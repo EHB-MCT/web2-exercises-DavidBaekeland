@@ -84,7 +84,7 @@ window.onload = function() {
     document.getElementById("Calculate").addEventListener("click", () => calculatePrice(dishes));
 } 
 
-function calculatePrice(dishes) {
+function calculatePrice(dishes = null) {
     let price = 0;
     document.getElementsByName("calculate").forEach(e => {
         if(e.checked) {
@@ -98,5 +98,7 @@ function calculatePrice(dishes) {
         }
     })
 
-    
+    const priceHTML = `<p>The price is ${price}. </p>`;
+    document.getElementsByTagName("h1")[0].innerHTML = priceHTML;
+    console.log(price)
 }
