@@ -17,12 +17,23 @@ window.onload = function() {
         id: "3",
         name: "Pasta",
         price: 5
-    });
+    },
+    {
+        id: "4",
+        name: "Lasagne",
+        price: 19
+    },
+    {
+        id: "5",
+        name: "Cordon Blue",
+        price: 5
+    }
+    );
 
     dishes.forEach(dish => {
         console.log(dish);
-        const radio = `<label><input type="radio" name="orderDish" value="${dish.id}" id="${dish.id}">${dish.name}</label><br>`;
-        document.getElementById("submit").insertAdjacentHTML("beforebegin", radio)
+        const checkbox = `<label><input type="checkbox" name="calculate" value="${dish.id}" id="${dish.id}">${dish.name}</label><br>`;
+        document.getElementById("submit").insertAdjacentHTML("beforebegin", checkbox)
     });
     console.log("test");
 
@@ -52,7 +63,6 @@ window.onload = function() {
                 const message = `The order for the customer ${name}  is the following:  ${order}. The customer may be notified by email:  ${email}`;
                 document.getElementById("container").innerHTML = message
             }
-            
         };
 
 
@@ -71,6 +81,22 @@ window.onload = function() {
         })
     });
 
-    
+    document.getElementById("Calculate").addEventListener("click", () => calculatePrice(dishes));
 } 
 
+function calculatePrice(dishes) {
+    let price = 0;
+    document.getElementsByName("calculate").forEach(e => {
+        if(e.checked) {
+            dishes.forEach(dish => {
+                console.log(e)
+                if(dish.id == e.value)  {
+                    price+=dish.price;
+                }
+            })
+            
+        }
+    })
+
+    
+}
