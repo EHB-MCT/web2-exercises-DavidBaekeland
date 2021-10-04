@@ -1,25 +1,22 @@
 "use strict";
 
 window.onload = function() {
-    console.log("test");
-
-
-    // array
     const dishes = [];
+    // array
     dishes.push({
         id: "1",
         name: "pizza Mozarella",
-        price: "10"
-    });
-    dishes.push({
+        price: 10
+    }, 
+    {
         id: "2",
         name: "tomato soep",
-        price: "3"
-    });
-    dishes.push({
+        price: 3
+    },
+    {
         id: "3",
         name: "Pasta",
-        price: "5"
+        price: 5
     });
 
     dishes.forEach(dish => {
@@ -27,6 +24,9 @@ window.onload = function() {
         const radio = `<label><input type="radio" name="orderDish" value="${dish.id}" id="${dish.id}">${dish.name}</label><br>`;
         document.getElementById("submit").insertAdjacentHTML("beforebegin", radio)
     });
+    console.log("test");
+
+
 
 
     document.getElementById("form").addEventListener("submit", event => {
@@ -46,12 +46,13 @@ window.onload = function() {
         const order = {
             name: document.getElementById("name").value,
             email: document.getElementById("email").value,
-            order: document.getElementsByName("orderDish").forEach(e => e.checked),
+            // order: document.getElementsByName("orderDish").value,
             printOrder(name, email, order) {
                 console.log(document.getElementsByName("orderDish"));
                 const message = `The order for the customer ${name}  is the following:  ${order}. The customer may be notified by email:  ${email}`;
                 document.getElementById("container").innerHTML = message
             }
+            
         };
 
 
@@ -68,13 +69,8 @@ window.onload = function() {
                 
             }
         })
-
-
-
-        
-
-        
-        
     });
 
+    
 } 
+
