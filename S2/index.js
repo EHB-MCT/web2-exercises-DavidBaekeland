@@ -5,8 +5,6 @@ import Team from "./Teams.js";
 let list = [];
 let pokemon = [];
 
-
-
 function getData() {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
     .then(resp => resp.json())
@@ -31,8 +29,8 @@ window.onload = function() {
     setTimeout(buildList, 5000);
 
     function buildList() {
-        let t = new Team();
-        t.describe();
+        let t = new Team().describe();
+        document.getElementById("foto").insertAdjacentHTML("beforebegin", t);
         pokemon.forEach(data4 => {
             
             let div = `<div class="data">
