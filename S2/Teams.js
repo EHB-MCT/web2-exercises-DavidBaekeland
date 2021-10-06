@@ -4,12 +4,12 @@ class Team {
     constructor() {
         this.teamName = "default Team";
         this.trainer = "ds";
-        this.roster = [];
+        this.roster = ["test","qsdfqs"];
         console.log(this.roster)
     }
     describe() {
-        console.log(this.roster)
-        return `Team ${this.teamName} with trainer ${this.trainer} has the following pokemon: ${[...this.rooster]}`
+        console.log(...this.roster)
+        return `<h1>Team ${this.teamName} with trainer ${this.trainer} has the following pokemon: ${[...this.roster]}</h1>`
     }
 
 }
