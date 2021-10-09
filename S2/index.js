@@ -29,8 +29,8 @@ window.onload = function() {
     setTimeout(buildList, 5000);
 
     function buildList() {
-        let t = new Team().describe();
-        document.getElementById("foto").insertAdjacentHTML("beforebegin", t);
+        let t = new Team();
+        document.getElementById("foto").insertAdjacentHTML("beforebegin", t.describe());
         pokemon.forEach(data4 => {
             
             let div = `<div class="data">
@@ -43,10 +43,12 @@ window.onload = function() {
                    div += `<p>${types.type.name}</p>`;
                 });
 
-                div += `<button> add Team
+                div += `<button id="${data4.id}"> add Team
                  </botton>
                  </div>`;
             document.getElementById("foto").insertAdjacentHTML("beforeend", div);
+
+            document.getElementById(`${data4.id}`).addEventListener("click", () => t.addPokemon(data4.name));
         })
     }
     
