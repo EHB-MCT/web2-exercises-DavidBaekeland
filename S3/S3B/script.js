@@ -8,9 +8,31 @@ window.onload = function() {
         e.preventDefault();
         const input = document.getElementById("inputTitle").value;
         console.log(input)
+        let url = baseurl + `&t=${input}`;
+
+        getData(url).then(
+            result => {
+                console.log(result)
+                let html = `<div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                  <div class="col-md-4">
+                    <img src="${result.Poster}" id="i" class="card-img" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">${result.Title}</h5>
+                      <p class="card-text">${result.Plot}</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>`
+    
+              document.getElementsByClassName("container")[0].insertAdjacentHTML("beforeend", html)
+            }
+        );
     })
     
-    let url = baseurl + "&t=parasite";
 
     // function showData(result) {
     //     result => {
@@ -20,16 +42,7 @@ window.onload = function() {
     // }
     
     // getData().then((result) => showData(result))
-    getData(url).then(
-        result => {
-            // https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute
-            console.log(result),
-            document.getElementById("title").innerText = `${result.Title}`;
-            document.getElementById("discription").innerText = `${result.Plot}`;
-            document.getElementById("i").setAttribute("src", `${result.Poster}`)
-            console.log()
-        }
-    );
+    
 }
 
 
