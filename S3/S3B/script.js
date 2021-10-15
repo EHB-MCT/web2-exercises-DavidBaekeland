@@ -1,6 +1,7 @@
 "use strict";
 
 let baseurl = "http://www.omdbapi.com/?apikey=bb115798"
+let counter = 0;
 
 window.onload = function() {
     //input
@@ -9,6 +10,7 @@ window.onload = function() {
         const input = document.getElementById("inputTitle").value;
         console.log(input)
         let url = baseurl + `&t=${input}`;
+
 
         getData(url).then(
             result => {
@@ -33,7 +35,14 @@ window.onload = function() {
               document.getElementById(`${result.imdbID}`).addEventListener("click", e => {
                   e.preventDefault();
                   console.log(result.imdbID)
-                  document.getElementById(`timer`).innerText = result.Runtime;
+
+                  // https://stackoverflow.com/questions/5489928/how-to-split-and-assign-2-words
+                  // https://www.geeksforgeeks.org/convert-a-string-to-an-integer-in-javascript/#:~:text=In%20JavaScript%20parseInt()%20function,string%20doesn%27t%20contain%20number.
+                  let runTime = result.Runtime.split(" ");
+                  let time = parseInt(runTime[0])
+                  counter += time;
+                  document.getElementById(`timer`).innerText = counter;
+                  document.getElementById(`timer`).insertAdjacentText("beforeEnd", ` ${runTime[1]}`);
               })
             }
         );
