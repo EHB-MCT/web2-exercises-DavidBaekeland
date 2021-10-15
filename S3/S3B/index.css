@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#film {
+    border: 2px solid black;
+    /* color: #6df34b; */
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    text-align: center;
+    padding: 10px;
+    margin: 20% auto;
+}
+
+#foto {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
