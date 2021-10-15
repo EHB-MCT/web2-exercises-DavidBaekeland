@@ -23,12 +23,18 @@ window.onload = function() {
                       <h5 class="card-title">${result.Title}</h5>
                       <p class="card-text">${result.Plot}</p>
                       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                      <button id="${result.imdbID}" type="click" class="btn btn-primary mb-2">+</button>
                     </div>
                   </div>
                 </div>
               </div>`
     
               document.getElementsByClassName("container")[0].insertAdjacentHTML("beforeend", html)
+              document.getElementById(`${result.imdbID}`).addEventListener("click", e => {
+                  e.preventDefault();
+                  console.log(result.imdbID)
+                  document.getElementById(`timer`).innerText = result.Runtime;
+              })
             }
         );
     })
