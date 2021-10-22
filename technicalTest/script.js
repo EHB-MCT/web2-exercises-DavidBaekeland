@@ -1,21 +1,36 @@
-"use strict"
+import fetch from "node-fetch";
+import http from "http";
 
-/**
- * Iconfinder
- * problemen met CORS 
- */
+// api werkt met node. Data kan getoond worden in terminal en ook geprint worden op scherm
+
+// https://www.w3schools.com/nodejs/shownodejs.asp?filename=demo_http
+
 const options = {
   method: 'GET',
+  mode: 'cors',
   headers: {
+   'Access-Control-Allow-Origin': "*",
     Accept: 'application/json',
     Authorization: 'Bearer X0vjEUN6KRlxbp2DoUkyHeM0VOmxY91rA6BbU5j3Xu6wDodwS0McmilLPBWDUcJ1'
   }
 };
 
-fetch('https://api.iconfinder.com/v4/iconsets?count=10', options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
+
+console.log(http)
+// var http = require('http');
+
+//create a server object:
+
+  
+  fetch('https://api.iconfinder.com/v4/iconsets?count=10', options)
+    .then(response => response.json())
+    .then(response => {
+      http.createServer(function (req, res) {
+        res.write(response.iconsets[0].name); 
+        res.end(); //end the response
+      }).listen(5500); 
+    })
+    .catch(err => console.error(err));  
 
 
 
