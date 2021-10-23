@@ -22,11 +22,12 @@ console.log(http)
 //create a server object:
 
   
-  fetch('https://api.iconfinder.com/v4/iconsets?count=10', options)
+  fetch('https://api.iconfinder.com/v4/icons/search?query=arrow&count=10&premium=false', options)
     .then(response => response.json())
     .then(response => {
       http.createServer(function (req, res) {
-        res.write(response.iconsets[0].name); 
+        res.write("response"); 
+        console.log(response.icons[0].raster_sizes[0].formats[0].preview_url)
         res.end(); //end the response
       }).listen(5500); 
     })
