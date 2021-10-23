@@ -10,6 +10,7 @@
   "author": "David Baekeland",
   "license": "ISC",
   "dependencies": {
+    "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
     "http-server": "^14.0.0",
     "node-fetch": "^3.0.0"
