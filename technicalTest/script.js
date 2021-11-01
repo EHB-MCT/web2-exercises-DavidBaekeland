@@ -1,6 +1,5 @@
 import fetch from "node-fetch";
 import http from "http";
-import fs from "fs"
 
 
 
@@ -19,15 +18,22 @@ const options = {
 };
 
 
-console.log(http)
+// console.log(http)
 // var http = require('http');
 
 //create a server object:
 
-
-    getData('https://api.iconfinder.com/v4/icons/search?query=arrow&count=10&premium=false', options).then(response => {
-      http.createServer(function (req, res) {
-        res.write(response.icons[0].raster_sizes[0].formats[0].preview_url)
+// https://zetcode.com/javascript/http/
+// https://nodejs.org/api/http.html
+// https://stackoverflow.com/questions/14413559/why-is-response-write-in-node-js-not-injecting-html
+// https://www.w3schools.com/tags/tag_img.asp
+    getData('https://api.iconfinder.com/v4/icons/search?query=Stefan%20Taubert&count=4', options).then(response => {
+    console.log(response.icons[3].vector_sizes[0].formats[0].download_url);  
+    
+    http.createServer(function (req, res) {
+        let img = `<img src="${response.icons[3].raster_sizes[0].formats[0].preview_url}" alt="Girl in a jacket">`;
+        res.writeHead(200,{"Content-Type" : "text/html"});
+        res.write(img)
         res.end(); //end the response
       }).listen(5500); 
     }).catch(err => console.error(err));
@@ -36,3 +42,4 @@ console.log(http)
       let response = await fetch(url, options)
       return await response.json();
     }  
+
