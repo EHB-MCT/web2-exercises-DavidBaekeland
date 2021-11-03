@@ -1,12 +1,19 @@
+import express from "express";
 import fetch from "node-fetch";
-import http from "http";
 import fs from "fs";
+const app = express();
+app.use(express.static("public"));
 
+// https://expressjs.com/
+// https://nodejs.org/api/packages.html#type
+// https://www.w3schools.com/nodejs/nodejs_filesystem.asp
 
+// https://exerror.com/referenceerror-fetch-is-not-defined-in-nodejs/
+// https://exerror.com/uncaught-syntaxerror-cannot-use-import-statement-outside-a-module-when-importing-ecmascript-6/
+// https://github.com/gorgorgordon/node_css_demo
+// https://stackoverflow.com/questions/58211880/uncaught-syntaxerror-cannot-use-import-statement-outside-a-module-when-import
+// https://www.section.io/engineering-education/rendering-html-pages-as-a-http-server-response-using-node-js/
 
-// api werkt met node. Data kan getoond worden in terminal en ook geprint worden op scherm
-
-// https://www.w3schools.com/nodejs/shownodejs.asp?filename=demo_http
 
 const options = {
   method: 'GET',
@@ -18,43 +25,15 @@ const options = {
   }
 };
 
+getData('https://api.iconfinder.com/v4/icons/search?query=Stefan%20Taubert&count=4', options).then(response => {
+    console.log(response.icons[3].vector_sizes[0].formats[0].download_url);
 
-// console.log(http)
-// var http = require('http');
-
-//create a server object:
-
-// https://zetcode.com/javascript/http/
-// https://nodejs.org/api/http.html
-// https://stackoverflow.com/questions/14413559/why-is-response-write-in-node-js-not-injecting-html
-// https://www.w3schools.com/tags/tag_img.asp
-// https://www.codegrepper.com/code-examples/javascript/nodejs+send+file+http+response
-// https://nodejs.org/en/knowledge/file-system/how-to-write-files-in-nodejs/
-// https://www.w3schools.com/nodejs/nodejs_filesystem.asp
-    getData('https://api.iconfinder.com/v4/icons/search?query=Stefan%20Taubert&count=4', options).then(response => {
-    console.log(response.icons[3].vector_sizes[0].formats[0].download_url);  
-    
-    http.createServer(function (req, res) {
         getSvg(`${response.icons[3].vector_sizes[0].formats[0].download_url}`, options).then(response2 =>  {
-          console.log(response2)
-          
-
-          // Ophalen van svg
-          fs.writeFile('response.svg', response2, function (err) {
-            if (err) throw err;
-            console.log('Saved!');
-          });
-
-
-          // tonen van png
-          let img = `<img src="${response.icons[3].raster_sizes[0].formats[0].preview_url}" alt="Girl in a jacket">`;
-          res.writeHead(200,{"Content-Type" : "text/html"});
-          res.write(img)
-          res.end(); //end the response
-
+          // console.log(response2)
+          newIcon("account", response2);          
         });
-      }).listen(5500); 
-    }).catch(err => console.error(err));
+    
+})
 
     async function getData(url, options) {
       let response = await fetch(url, options)
@@ -64,4 +43,23 @@ const options = {
     async function getSvg(url, options) {
       let response = await fetch(url, options)
       return await response.text();
-    }  
+    } 
+    
+    // https://www.w3schools.com/nodejs/shownodejs_cmd.asp?filename=demo_fs_writefile
+    // https://nodejs.org/en/knowledge/file-system/how-to-write-files-in-nodejs/
+    function newIcon(name, source) {
+      fs.writeFile(`public/${name}.svg`, source, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+      });
+    }
+
+app.get('/', (req, res) => {
+  res.sendFile('index.html');
+})
+
+app.listen(3000, function() {
+  console.log("Running on port 3000.");
+});
+
+
