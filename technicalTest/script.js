@@ -35,6 +35,79 @@ getData('https://api.iconfinder.com/v4/icons/search?query=Stefan%20Taubert&count
     
 })
 
+getData("https://api.iconfinder.com/v4/icons/search?query=Heroicons&count=45", options).then(response => {
+  console.log();
+  getSvg(`${response.icons[42].vector_sizes[0].formats[0].download_url}`, options).then(response2 =>  {
+    // console.log(response2)
+    newIcon("logout", response2);          
+  });
+})
+
+
+
+// id zoeken van een bepaalde artist -> gebruiken om iconsets op te halen
+// 642 
+// let i = 600;
+// let x = setInterval(test, 1000);
+
+// async function test() {
+//   console.log(i)
+//   await getData(`https://api.iconfinder.com/v4/authors/${i}`, options).then(response => {
+//     console.log(response);
+//   if(response.name == "Golmin Design")  {
+//         console.log("qfqdsf", response);
+//       }  else if(i==900){
+//         console.log(response);
+//       }
+//     })
+//   i++
+// }
+
+
+// 88918
+// id van iconset ophalen: 642: id van bepaalde artist
+getData("https://api.iconfinder.com/v4/authors/642/iconsets?count=10", options).then(response => {
+  
+
+// 100 icons in icon set ophalen met behulp van id
+  getData(`https://api.iconfinder.com/v4/iconsets/${response.iconsets[0].iconset_id}/icons?count=100`, options).then(response2 => {
+  //   console.log(response2)
+    
+  
+  // console.log(response2.icons[34].vector_sizes[0].formats[0].download_url)
+
+
+  // 1 iconset -> 100 icons -> downloaden
+  // icon: 28 -> dollar
+  //   response2.icons.forEach((res, index) => {
+  //       // console.log(res.vector_sizes[0].formats[0].download_url)
+        
+
+  //       getSvg(`${res.vector_sizes[0].formats[0].download_url}`, options).then(response3 =>  {
+  //             // console.log(response2)
+  //             newIcon(`icon${index}`, response3);          
+  //           }).catch(err => console.log(err));;
+
+  //     })
+  //     console.log(response.icons);
+
+
+  // dollar icon
+  getSvg(`${response2.icons[27].vector_sizes[0].formats[0].download_url}`, options).then(response3 =>  {
+    newIcon(`dollar`, response3);          
+  }).catch(err => console.log(err));
+
+  // plus icon
+  getSvg(`${response2.icons[75].vector_sizes[0].formats[0].download_url}`, options).then(response3 =>  {
+    newIcon(`plus`, response3);          
+  }).catch(err => console.log(err));
+    
+  }).catch(err => console.log(err));
+
+}).catch(err => console.log(err));
+
+
+
     async function getData(url, options) {
       let response = await fetch(url, options)
       return await response.json();
