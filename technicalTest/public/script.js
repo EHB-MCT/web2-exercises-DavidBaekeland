@@ -7,7 +7,7 @@ let iconInput = document.getElementsByClassName("iconInput");
 console.log(iconInput.length)
 
 for(let i=0; i <= iconInput.length-1; i++){  
-    console.log(iconInput, i);
+    // console.log(iconInput, i);
     iconInput[i].addEventListener("change", e => {
         change(e, i);
     });
@@ -19,9 +19,9 @@ for(let i=0; i <= iconInput.length-1; i++){
     // https://stackoverflow.com/questions/54358737/add-and-remove-id-by-pure-javascript/54358814
 
 function change(e, i)  {
-    console.log(e.target);
+    // console.log(e.target);
     if(e.target.checked) {
-        console.log("qqsdfqsdfdsqfqf");
+        // console.log("qqsdfqsdfdsqfqf");
         document.getElementsByTagName("img")[i].setAttribute('class','filterImg');
         document.getElementsByTagName("div")[i].setAttribute('class','iconActive');
     } else {
@@ -29,4 +29,17 @@ function change(e, i)  {
         document.getElementsByTagName("div")[i].setAttribute('class','icon');
     
     }
-}
+};
+
+document.getElementById("form").addEventListener("submit", e => {
+    e.preventDefault();
+    let input = document.getElementsByClassName('iconActive');
+    console.log(input);
+    if(input.length > 0)  {
+        for(let i=0; i<=input.length-1; i++)  {
+            console.log(input[i].id);
+        }
+    } else{
+        console.log("U heeft geen icon aangeduid");
+    }
+});
