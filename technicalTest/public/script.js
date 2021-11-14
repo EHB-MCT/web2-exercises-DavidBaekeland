@@ -33,11 +33,13 @@ function change(e, i)  {
 
 document.getElementById("form").addEventListener("submit", e => {
     e.preventDefault();
-    let input = document.getElementsByClassName('iconActive');
+    let input = document.getElementsByClassName('iconInput');
     console.log(input);
     if(input.length > 0)  {
         for(let i=0; i<=input.length-1; i++)  {
-            console.log(input[i].id);
+            if(input[i].checked) {
+                console.log(input[i].value);
+            }
         }
     } else{
         console.log("U heeft geen icon aangeduid");
