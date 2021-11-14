@@ -1,69 +1,61 @@
-p{
-  font-style: italic;
-}
-
 /*https://stackoverflow.com/questions/22252472/how-to-change-the-color-of-an-svg-element#:~:text=You%20can%27t%20change%20the,or%20using%20inline.*/
 /*https://codepen.io/sosuke/pen/Pjoqqp*/
 /*https://developer.mozilla.org/en-US/docs/Web/CSS/filter*/
 
-img {
-  width: 27px;
-  stroke-width: 30%;
-  filter: invert(14%) sepia(100%) saturate(7482%) hue-rotate(9deg) brightness(98%) contrast(119%)
-}
-
-button {
-  height: 60px;
-  width: 300px;
-  border-radius: 30px;
-  background-color: white;
-  border: 2px solid red;
-}
 
 /*https://stackoverflow.com/questions/19053181/how-to-remove-focus-around-buttons-on-click*/
-button:focus {
-  background-color: red;
-  border: none;
-  outline: none;
-}
 
-
-/*https://stackoverflow.com/questions/14792574/css-child-set-to-change-color-on-parent-hover-but-changes-also-when-hovered
-https://codepen.io/sosuke/pen/Pjoqqp*/
-button:focus img  {
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(302deg) brightness(103%) contrast(103%);
-}
-
-/*https://www.youtube.com/watch?v=F22rI8jpaV4
-https://codepen.io/sosuke/pen/Pjoqqp*/
-input[type='checkbox']:checked  {
-  -webkit-appearance: none;
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(302deg) brightness(103%) contrast(103%);
-  /* background: white; */
-  filter: none;
-  background-color: red;
-  border: none;
-}
-
-/*https://www.w3schools.com/howto/howto_css_custom_checkbox.asp
+/**https://www.w3schools.com/howto/howto_css_custom_checkbox.asp
 https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox
 https://www.w3schools.com/cssref/pr_background-image.asp
 https://developer.mozilla.org/es/docs/Web/CSS/background-color
-https://stackoverflow.com/questions/8195215/css-background-image-on-background-color
 https://stackoverflow.com/questions/37582952/using-a-background-image-for-checkbox*/
 
-input[type='checkbox']{
-  -webkit-appearance: none;
+/*https://stackoverflow.com/questions/14792574/css-child-set-to-change-color-on-parent-hover-but-changes-also-when-hovered*/
+
+
+.icon {
+  border: 2px solid red;
   border-radius: 30px;
-  border: 2px solid ;
-  vertical-align:middle;
+  height: 50px;
+  width: 300px;
+  text-align: center;
+}
+.iconImg {
+  padding: 2.2% 0;
+  stroke-width: 30%;
+  position: relative;
+  margin: auto;
+  height: 70%;
+  filter: invert(14%) sepia(100%) saturate(7482%) hue-rotate(9deg) brightness(98%) contrast(119%)
+}
+
+input[type='checkbox']{
+  position: absolute;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   height: 60px;
   width: 300px;
-  background: url("account.svg");
-  background-size: 10%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  filter: invert(14%) sepia(100%) saturate(7482%) hue-rotate(9deg) brightness(98%) contrast(119%)
+  outline: none;
+  left: 0%;
+}
+
+.filterImg {
+  stroke-width: 30%;
+  position: relative;
+  padding: 2.2% 0;
+  height: 70%;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(302deg) brightness(103%) contrast(103%);
+}
+
+.iconActive {
+  border: 2px solid red;
+  border-radius: 30px;
+  height: 50px;
+  width: 300px;
+  text-align: center;
+  background-color: red;
 }
 
 
