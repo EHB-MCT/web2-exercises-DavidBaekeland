@@ -22,10 +22,10 @@ function change(e, i)  {
     // console.log(e.target);
     if(e.target.checked) {
         // console.log("qqsdfqsdfdsqfqf");
-        document.getElementsByTagName("img")[i].setAttribute('class','filterImg');
+        document.getElementsByTagName("img")[i].setAttribute('class','img filterImg');
         document.getElementsByTagName("div")[i].setAttribute('class','iconActive');
     } else {
-        document.getElementsByTagName("img")[i].setAttribute('class','iconImg');
+        document.getElementsByTagName("img")[i].setAttribute('class','img iconImg');
         document.getElementsByTagName("div")[i].setAttribute('class','icon');
     
     }
