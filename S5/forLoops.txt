@@ -1,0 +1,12 @@
+let array = [1, 2, 3];
+// for loops
+for(let i of array) {
+    console.log(i); // -> 1, 2, 3
+}
+
+let arrayObject = [{name: "test", age: 20}, {name: "sdqfqds", age: 70}]
+// property gebruiken
+for(let i in arrayObject) {
+    console.log(i); // -> name
+    console.log(arrayObject[i]); // -> 0 { name: 'test', age: 20 } 1 { name: 'sdqfqds', age: 70 }
+}
