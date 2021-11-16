@@ -25,23 +25,41 @@ const options = {
   }
 };
 
-getData('https://api.iconfinder.com/v4/icons/search?query=Stefan%20Taubert&count=4', options).then(response => {
-    console.log(response.icons[3].vector_sizes[0].formats[0].download_url);
+// getData('https://api.iconfinder.com/v4/icons/search?query=Stefan%20Taubert&count=4', options).then(response => {
+//     console.log(response.icons[3].vector_sizes[0].formats[0].download_url);
 
-        getSvg(`${response.icons[3].vector_sizes[0].formats[0].download_url}`, options).then(response2 =>  {
-          // console.log(response2)
-          newIcon("account", response2);          
-        });
+//         getSvg(`${response.icons[3].vector_sizes[0].formats[0].download_url}`, options).then(response2 =>  {
+//           // console.log(response2)
+//           newIcon("account", response2);          
+//         });
     
-})
+// })
 
-getData("https://api.iconfinder.com/v4/icons/search?query=Heroicons&count=45", options).then(response => {
-  console.log();
-  getSvg(`${response.icons[42].vector_sizes[0].formats[0].download_url}`, options).then(response2 =>  {
-    // console.log(response2)
-    newIcon("logout", response2);          
-  });
-})
+// getData("https://api.iconfinder.com/v4/icons/search?query=Heroicons&count=45", options).then(response => {
+//   getSvg(`${response.icons[42].vector_sizes[0].formats[0].download_url}`, options).then(response2 =>  {
+//     // console.log(response2)
+//     newIcon("logout", response2);          
+//   });
+// })
+
+// getData("https://api.iconfinder.com/v4/icons/search?query=mail&count=45", options).then(response => {
+//   // getSvg(`${response.icons[42].vector_sizes[0].formats[0].download_url}`, options).then(response2 =>  {
+//     //   newIcon("logout", response2);          
+//     // });
+//       console.log(response)
+// })
+
+
+// for(let i=0; i<100; i++) {
+//   getData(`https://api.iconfinder.com/v4/licenses/${i}`, options).then(response => {
+//     if(response.name.includes("MIT")) {
+//       console.log(response);
+
+//     }
+
+//   })
+
+// }
 
 
 
@@ -66,11 +84,11 @@ getData("https://api.iconfinder.com/v4/icons/search?query=Heroicons&count=45", o
 
 // 88918
 // id van iconset ophalen: 642: id van bepaalde artist
-getData("https://api.iconfinder.com/v4/authors/642/iconsets?count=10", options).then(response => {
+// getData("https://api.iconfinder.com/v4/authors/642/iconsets?count=10", options).then(response => {
   
 
 // 100 icons in icon set ophalen met behulp van id
-  getData(`https://api.iconfinder.com/v4/iconsets/${response.iconsets[0].iconset_id}/icons?count=100`, options).then(response2 => {
+  // getData(`https://api.iconfinder.com/v4/iconsets/${response.iconsets[0].iconset_id}/icons?count=100`, options).then(response2 => {
   //   console.log(response2)
     
   
@@ -78,7 +96,7 @@ getData("https://api.iconfinder.com/v4/authors/642/iconsets?count=10", options).
 
 
   // 1 iconset -> 100 icons -> downloaden
-  // icon: 28 -> dollar
+  // icon: 28ste -> dollar
   //   response2.icons.forEach((res, index) => {
   //       // console.log(res.vector_sizes[0].formats[0].download_url)
         
@@ -93,18 +111,18 @@ getData("https://api.iconfinder.com/v4/authors/642/iconsets?count=10", options).
 
 
   // dollar icon
-  getSvg(`${response2.icons[27].vector_sizes[0].formats[0].download_url}`, options).then(response3 =>  {
-    newIcon(`dollar`, response3);          
-  }).catch(err => console.log(err));
+  // getSvg(`${response2.icons[27].vector_sizes[0].formats[0].download_url}`, options).then(response3 =>  {
+  //   newIcon(`dollar`, response3);          
+  // }).catch(err => console.log(err));
 
-  // plus icon
-  getSvg(`${response2.icons[75].vector_sizes[0].formats[0].download_url}`, options).then(response3 =>  {
-    newIcon(`plus`, response3);          
-  }).catch(err => console.log(err));
+  // // plus icon
+  // getSvg(`${response2.icons[75].vector_sizes[0].formats[0].download_url}`, options).then(response3 =>  {
+  //   newIcon(`plus`, response3);          
+  // }).catch(err => console.log(err));
     
-  }).catch(err => console.log(err));
+  // }).catch(err => console.log(err));
 
-}).catch(err => console.log(err));
+// }).catch(err => console.log(err));
 
 
 
