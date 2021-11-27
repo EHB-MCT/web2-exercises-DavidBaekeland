@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
     console.log("32132132132123")
-    res.redirect("/test.html")
+    res.redirect("/info.html")
   
 })
 
@@ -58,8 +58,17 @@ app.get('/api/boardgame', async function(req, res) {
 // })
 
 // https://www.youtube.com/watch?v=8j8qc6sx7Xo
-app.post('/api/saveData', (req, res)  =>  {
+// https://www.youtube.com/watch?v=JAFhwfyYEb4
+// https://nodejs.org/api/fs.html#fspromiseswritefilefile-data-options
+app.post('/api/saveData', async (req, res)  =>  {
     console.log(req.body);
+    data = JSON.stringify(req.body);
+    try  {
+        let result = await fs.writeFile(`test.json`, data);
+
+    } catch(error)  {
+        console.log(error);
+    }
     res.send(`Data recieved with id ${req.body.id}`);
 })
 
