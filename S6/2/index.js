@@ -1,17 +1,20 @@
 const fs = require('fs/promises');
 const fs2 = require('fs');
-const express = require('express')
+const express = require('express');
+const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 
 
-app.use(express.static("public"))
+app.use(express.static("public"));
+// alle code wordt eerst uitgevoerd door middelware (bodyParser) dan in functies
+app.use(bodyParser.json())
 
 
 app.get('/', (req, res) => {
     console.log("32132132132123")
-    
-  res.send('Hello David!')
+    res.redirect("/test.html")
+  
 })
 
 // https://www.geeksforgeeks.org/node-js-fs-readfile-method/
@@ -34,10 +37,12 @@ app.get('/api/boardgame', async function(req, res) {
     // console.log(result);
 
     let data = JSON.parse(result);
+
+    // console.log(data);
     try{
         for(let test in data) {
             if(test == id) {
-                let boardgame = data[test]
+                let boardgame = data[test];
                 res.send(boardgame);
             }
         }
@@ -51,6 +56,12 @@ app.get('/api/boardgame', async function(req, res) {
 // app.get('/api/boardgame/:id', (req, res) => {
 //     console.log(req.params);
 // })
+
+// https://www.youtube.com/watch?v=8j8qc6sx7Xo
+app.post('/api/saveData', (req, res)  =>  {
+    console.log(req.body);
+    res.send(`Data recieved with id ${req.body.id}`);
+})
 
 app.listen(port, () => {
   console.log(`My first REST API Example app listening at http://localhost:${port}`)
