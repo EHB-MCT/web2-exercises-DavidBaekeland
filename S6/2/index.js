@@ -28,6 +28,7 @@ app.get('/api/boardgames', (req, res) => {
 
 // https://stackabuse.com/get-query-strings-and-parameters-in-express-js/
 // https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express
+// https://www.youtube.com/watch?v=3Ykr6dZjXhE
 // http://localhost:3000/api/boardgame?id=12122
 app.get('/api/boardgame', async function(req, res) {
     let id = req.query.id;
@@ -40,12 +41,15 @@ app.get('/api/boardgame', async function(req, res) {
 
     // console.log(data);
     try{
-        for(let test in data) {
-            if(test == id) {
-                let boardgame = data[test];
-                res.send(boardgame);
-            }
-        }
+        // for(let test in data) {
+        //     if(test == id) {
+        //         let boardgame = data[test];
+        //         res.send(boardgame);
+        //     }
+        // }
+
+        let boardgame = data[id];
+        res.send(boardgame);
     }catch(err) {
         console.log(err)
     }
