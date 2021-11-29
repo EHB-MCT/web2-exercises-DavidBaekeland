@@ -76,6 +76,37 @@ app.post('/api/saveData', async (req, res)  =>  {
     res.send(`Data recieved with id ${req.body.id}`);
 })
 
+app.post('/api/saveBoardgame', async (req, res)  =>  {
+    if(!req.body.id || !req.body.name || !req.body.genre || !req.body.mechanisms || !req.body.description)  {
+        res.status(400).send(' Bad request: missing id, name, genre, mechanisms or description');
+        return;
+    }
+    
+    try  {
+        let result = await fs.readFile(`boardgames.json`);
+        result = JSON.parse(result);
+        result[req.body.id] = {
+            name: req.body.name,
+            genre: req.body.genre,
+            mechanisms: req.body.mechanisms,
+            description: req.body.description,
+        }
+
+        data = JSON.stringify(result);
+
+        await fs.writeFile(`test2.json`, data);
+
+        // 201: data => updated
+        res.status(201).send(`boardgame succesfully saved with id ${req.body.id}`);
+    } catch(error)  {
+        console.log(error);
+        res.status(500).send('Error! HELP!')
+    }
+    // geen res.send => er is al een goede send
+    // res.send(`Data recieved with id ${req.body.id}`);
+})
+
+
 app.listen(port, () => {
   console.log(`My first REST API Example app listening at http://localhost:${port}`)
 })
