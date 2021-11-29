@@ -81,6 +81,12 @@ app.post('/api/saveBoardgame', async (req, res)  =>  {
         res.status(400).send(' Bad request: missing id, name, genre, mechanisms or description');
         return;
     }
+
+
+
+    if(result[req.body.bggid])  {
+        res.status(400).send('Bad request: boardgame already exists with id ' + req.body.bggid)
+    }
     
     try  {
         let result = await fs.readFile(`boardgames.json`);
